@@ -15,7 +15,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.3.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
@@ -35,6 +35,29 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- thmleaf模板依赖. -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<!-- shiro spring. -->  
+       	<dependency>  
+           <groupId>org.apache.shiro</groupId>  
+           <artifactId>shiro-spring</artifactId>  
+           <version>1.2.2</version>  
+       	</dependency> 
+  		<!-- mysql驱动; -->  
+		<dependency>  
+    		<groupId>mysql</groupId>  
+    		<artifactId>mysql-connector-java</artifactId>  
+		</dependency>
+		<!-- jdbc -->
+		<dependency>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
