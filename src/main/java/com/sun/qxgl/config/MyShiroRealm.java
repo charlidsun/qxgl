@@ -8,6 +8,11 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.sun.qxgl.authority.entity.UserInfo;
+import com.sun.qxgl.authority.service.AuthorityService;
 
 /**
  * 功能：
@@ -17,7 +22,8 @@ import org.apache.shiro.subject.PrincipalCollection;
  */
 public class MyShiroRealm extends AuthorizingRealm{
 	
-	
+	@Autowired
+	AuthorityService authorityService;
 	/**
 	 * 认证信息
 	 */
@@ -27,10 +33,12 @@ public class MyShiroRealm extends AuthorizingRealm{
 		
 		//获取用户名
 		String name = (String) token.getPrincipal();
+		System.out.println(name);
 		//根据用户名查相关信息
-		
+		UserInfo userInfo = authorityService.queryUserInfoByName(name);
+		System.out.println(userInfo);
 		//验证
-		SimpleAuthenticationInfo simplt = new SimpleAuthenticationInfo(name, hashedCredentials, credentialsSalt, getName());
+		SimpleAuthenticationInfo simplt = new SimpleAuthenticationInfo(userInfo, userInfo.getPassword(), ByteSource.Util.bytes(userInfo.getCredentialsSalt()), getName());
 		
 		return simplt;
 	}
