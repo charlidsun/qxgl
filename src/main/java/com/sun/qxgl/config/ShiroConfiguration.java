@@ -22,7 +22,6 @@ Apache Shiro 核心通过 Filter 来实现，就好像SpringMvc 通过DispachSer
  * @author Angel(QQ:412887952)
  * @version v.0.1
  */
-@Configuration 
 public class ShiroConfiguration {
 		
 	

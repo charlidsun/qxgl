@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.sun.qxgl.authority.entity.UserInfo;
 import com.sun.qxgl.authority.service.AuthorityService;
 
 /**
@@ -27,8 +29,7 @@ public class LoginController {
 	AuthorityService authorityService;
 
 	@RequestMapping({"/","/index"})
-	public String index(){
-		authorityService.queryUserInfoByName("admin");
+	public String index(ModelAndView modelAndView){
 		return "/index";
 	}
 	

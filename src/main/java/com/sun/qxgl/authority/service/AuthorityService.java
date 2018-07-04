@@ -34,9 +34,12 @@ public class AuthorityService extends BaseService{
 				List<Map<String,Object>> userRole = authorityDao.queryList(("SELECT ro.id,ro.description,ro.role FROM sysrole ro LEFT JOIN sysuserrole ro_re ON ro_re.roleId = ro.id LEFT JOIN userinfo info ON info.uid = ro_re.uid where ro_re.uid=")+userInfo.getUid());
 				List<SysRole> roleList = TransUtils.listMapToList(userRole, com.sun.qxgl.authority.entity.SysRole.class); 
 				userInfo.setUserRole(roleList);
-				List<Map<String,Object>> userPermission = authorityDao.queryList(("select * from syspermission pe LEFT JOIN sysrolepermission pe_re on pe_re.permissionId = pe.id LEFT JOIN sysuserrole ro_re on ro_re.roleId = pe_re.roleId LEFT JOIN userinfo info on info.uid = ro_re.uid where info.uid =")+userInfo.getUid());
-				List<SysRole> permList = TransUtils.listMapToList(userPermission, com.sun.qxgl.authority.entity.SysPermission.class);
-				userInfo.setUserRole(permList);
+				for (SysRole s:roleList){
+					List<Map<String,Object>> userPermission = authorityDao.queryList(("SELECT * FROM syspermission pe LEFT JOIN sysrolepermission pe_re ON pe_re.permissionId = pe.id WHERE pe_re.roleId=")+s.getId());
+					List<SysPermission> permList = TransUtils.listMapToList(userPermission, com.sun.qxgl.authority.entity.SysPermission.class);
+					s.setUserPermission(permList);
+				}
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -15,6 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserInfoController {
 
 	
+	
+	@RequestMapping("/roleList")
+	public String roleList(){
+		System.out.println("roleList");
+		return "user/roleList";
+	}
+	
 	@RequestMapping("/userList")
 	public String userList(){
 		return "userList";
