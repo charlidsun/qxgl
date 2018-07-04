@@ -2,6 +2,7 @@ package com.sun.qxgl.authority.controller;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -21,6 +22,7 @@ public class UserInfoController {
 		System.out.println("roleList");
 		return "user/roleList";
 	}
+
 	
 	@RequestMapping("/userList")
 	public String userList(){

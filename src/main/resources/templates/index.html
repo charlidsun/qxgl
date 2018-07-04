@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="/easy/themes/icon.css">
 	<script type="text/javascript" src="/easy/jquery.min.js"></script>
 	<script type="text/javascript" src="/easy/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="/easy/locale/easyui-lang-zh_CN.js"></script> 
 </head>
 <body>
 	<div class="easyui-layout" style="position: absolute;top:0;left:0;right:0;bottom:0">
@@ -15,7 +16,7 @@
 		<div data-options="region:'west',split:true" title="West" style="width:240px;">
 			<div id="aa" class="easyui-accordion" style="width:231px;height:100%;">
 				<div title="常用操作" data-options="selected:true,iconCls:'icon-item'" style="padding: 10px">
-            		<a href="#" onclick="addTab('权限列表','/userInfo/roleList')" class="easyui-linkbutton"
+            		<a href="#" onclick="addTab('权限列表','./user/roleList.html')" class="easyui-linkbutton"
                			data-options="plain:true,iconCls:'icon-lock'" style="width: 150px">用户管理</a>
             		<a href="#" onclick="addTab('ddd','/userInfo/userAdd')" class="easyui-linkbutton"
                			data-options="plain:true,iconCls:'icon-lock'" style="width: 150px">角色管理</a>

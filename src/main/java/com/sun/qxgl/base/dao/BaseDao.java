@@ -26,4 +26,8 @@ public class BaseDao {
 	public Map<String,Object> querySql(String sql){
 		return jdbc.queryForMap(sql);
 	}
+	
+	public int saveSql(String sql) {
+		return jdbc.update(sql);
+	}
 }

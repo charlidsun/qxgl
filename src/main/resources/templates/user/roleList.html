@@ -7,17 +7,71 @@
 <link rel="stylesheet" type="text/css" href="/easy/themes/icon.css">
 <script type="text/javascript" src="/easy/jquery.min.js"></script>
 <script type="text/javascript" src="/easy/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="/easy/locale/easyui-lang-zh_CN.js"></script>
 </head>
-<body>
-	<table id="dg"></table>
+<body style="width: 99%;height: 97%;overflow:hidden;">
+	<!-- 表格 -->
+	<table id="dg" class="easyui-datagrid" data-options="toolbar:'#tb'"> </table>
+	<!-- toolbar搜索 -->
+	<div id="tb" style="padding:5px;height:auto">
+		<div style="margin-bottom:5px">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="openRole(0)">新增</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</a>
+		</div>
+		<div>
+			<input style="width:80px">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-search">Search</a>
+		</div>
+	</div>
+	<!-- 弹出框，编辑和新增 -->
+	<div id="dlg" class="easyui-dialog" title="新增角色"  buttons="#dlg-buttons" data-options="closed:true,iconCls:'icon-save'" style="width:400px;height:200px;padding:10px">
+		<form id="ff" method="post">
+	    	<table cellpadding="5">
+	    		<tr>
+	    			<td>角色编码:</td>
+	    			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"></input></td>
+	    		</tr>
+	    		<tr>
+	    			<td>角色名描述:</td>
+	    			<td><input class="easyui-textbox" type="text" name="desc" data-options="required:true"></input></td>
+	    		</tr>
+	    	</table>
+		</form>
+		<div id="dlg-buttons">
+        <a href="#" class="easyui-linkbutton" onclick="formSubmit();">保存</a> 
+        <a href="#" class="easyui-linkbutton" onclick="closeDialog();">关闭</a>
+    </div>
+	</div>
 	<script>
 		$('#dg').datagrid({
     		url:'/home/sysRole',
     		columns:[[
-        		{field:'id',title:'Code',width:100},
-        		{field:'role',title:'Name',width:100},
+        		{field:'role',title:'角色',width:100},
+        		{field:'description',title:'描述',width:100},
     			]]
+		});
+		
+		function openRole(){
+			$('#dlg').dialog('open')
+		}
+		
+		function closeDialog(){
+			$('#dlg').dialog('close')
+		}
+		
+		function formSubmit(){
+			debugger
+			$('#ff').form('submit', {
+				url: '/home/saveRole',
+				onSubmit: function(){
+					
+				},
+				success: function(res){
+					console.log(res);
+					$.messager.progress('close');	// hide progress bar while submit successfully
+				}
 			});
+		}
 	</script>
 </body>
 </html>

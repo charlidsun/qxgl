@@ -1,6 +1,8 @@
 package com.sun.qxgl.authority.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,7 +24,6 @@ import com.sun.qxgl.authority.service.UserService;
 @RestController
 @RequestMapping("/home")
 public class HomeController {
-
 	
 	@Autowired
 	UserService userService;
@@ -38,5 +39,17 @@ public class HomeController {
 	public List<SysRole> listSysRole(){
 		List<SysRole> list = userService.querySysRole("");
 		return list;
+	}
+	
+	@RequestMapping("/saveRole")
+	public int saveRole(String name,String desc) {
+		System.out.println(name+"---"+desc);
+		int flag = 0;
+		Map<String,Object> map = new HashMap<>();
+		map.put("role", name);
+		map.put("description", desc);
+		map.put("available", 1);
+		flag =  userService.saveRole(map);
+		return flag;
 	}
 }
